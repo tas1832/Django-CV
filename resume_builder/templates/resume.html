@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>Page Title</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="">
+<style>
+    #basic-info h3{
+        font-weight: 100;
+    }
+    body{
+        margin:0%;
+        margin-top: 0%;
+    }
+</style>
+<script src="">
+      $(function(){
+    var form_idx_education_initial = $('#education > #id_education-TOTAL_FORMS').val();
+    var form_idx_experience_initial = $('#experience > #id_experience-TOTAL_FORMS').val();
+    var form_idx_project_initial = $('#project > #id_project-TOTAL_FORMS').val();
+    var form_idx_certification_initial = $('#certification > #id_certification-TOTAL_FORMS').val();
+    var form_idx_skill_initial = $('#skill > #id_skill-TOTAL_FORMS').val();
+    $('#education > #id_education-INITIAL_FORMS').val(parseInt(form_idx_education_initial));
+    $('#experience > #id_experience-INITIAL_FORMS').val(parseInt(form_idx_experience_initial));
+    $('#project > #id_project-INITIAL_FORMS').val(parseInt(form_idx_project_initial));
+    $('#certification > #id_certification-INITIAL_FORMS').val(parseInt(form_idx_certification_initial));
+    $('#skill > #id_skill-INITIAL_FORMS').val(parseInt(form_idx_skill_initial));
+    console.log("initial ed form " ,form_idx_education_initial);
+      })
+</script>
+<body>
+    {% load crispy_forms_tags %}
+
+<img src="">
+
+<div class="">
+
+ <div id='basic_info'>
+    {% if form_basic.middle_name.value != None %}
+    <h1>{{ form_basic.first_name.value }} {{ form_basic.middle_name.value }} {{ form_basic.last_name.value}}</h1>
+    {% else %}
+    <h1>{{ form_basic.first_name.value }} {{ form_basic.last_name.value}}</h1>
+    {% endif %}
+
+    <h3>Address: {{ form_basic.street_address.value}}, {{ form_basic.city.value}}, {{ form_basic.state.value}}</h3> 
+    <h3>Zip-code: {{ form_basic.zip.value}}, Country: {{ form_basic.country.value}}</h3>
+    <h3>Phone: {{ form_basic.phone.value}}</h3>
+    <h3>Email: {{ form_basic.email.value}}</h3>
+  </div>
+  <hr>
+  <h3>Education</h3>
+  <hr>
+  <!-- Management data of formset -->
+  {{ formset_education.management_form }}
+<div id = "education-formset">
+  {% for education_form in formset_education.forms %}
+    <p>{{ education_form|crispy}} </p>
+
+  {% endfor %}
+
+</div>
+</div>
+
+
+</body>
+</html>
